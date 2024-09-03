@@ -1,0 +1,166 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.hero h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--orange);
+}
+
+.hero p {
+  font-size: 24px;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  color: var(--white);
+}
+
+.cta-button {
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--white);
+  color: var(--orange);
+}
+
+.about, .vision, .newsletter {
+  width: 100%;
+  max-width: 1200px;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.about h2, .vision h2, .newsletter h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--chlorophyll-green);
+}
+
+.about p, .vision p, .newsletter p {
+  font-size: 18px;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  color: var(--black);
+}
+
+.section-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.section-image:hover {
+  transform: scale(1.05);
+}
+
+.newsletter form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.newsletter input[type="email"] {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid var(--chlorophyll-green);
+  border-radius: 4px 0 0 4px;
+  width: 300px;
+}
+
+.newsletter button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: var(--chlorophyll-green);
+  color: var(--white);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .about h2, .vision h2, .newsletter h2 {
+    font-size: 36px;
+  }
+
+  .about p, .vision p, .newsletter p {
+    font-size: 16px;
+  }
+
+  .newsletter input[type="email"] {
+    width: 200px;
+  }
+}

@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&display=swap");
+
+:root {
+  --chlorophyll-green: #4CAF50;
+  --orange: #FF5722;
+  --white: #FFFFFF;
+  --light-gray: #F5F5F5;
+  --dark-gray: #333333;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.hero {
+  position: relative;
+  background: url('../assets/hero.avif') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: var(--white);
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-button {
+  background-color: var(--chlorophyll-green);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  background-color: #45a049;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-heading {
+  color: var(--dark-gray);
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.section-image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  .section-text {
+    font-size: 1rem;
+  }
+
+  .content {
+    padding: 4rem 1rem;
+    gap: 4rem;
+  }
+}

@@ -1,0 +1,49 @@
+.programs {
+  text-align: center;
+  padding: 2rem;
+}
+
+.programs-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.programs h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.programs h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.programs h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.programs p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .programs h1 {
+    font-size: 2rem;
+  }
+
+  .programs h2 {
+    font-size: 1.5rem;
+  }
+
+  .programs h3 {
+    font-size: 1.25rem;
+  }
+
+  .programs p {
+    font-size: 0.875rem;
+  }
+}
