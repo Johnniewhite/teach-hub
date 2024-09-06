@@ -95,7 +95,7 @@ const Header: React.FC = () => {
           <span>TEACcH</span>
         </Logo>
         <NavLinks>
-          <NavLink to="/about">About TEACcH</NavLink>
+          <NavLink to="/about">About</NavLink>
           <NavLink to="/programs">Programs</NavLink>
           <NavLink to="/gallery">Gallery</NavLink>
           <NavLink to="/blog">Blog</NavLink>
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
         </MobileMenuButton>
       </Nav>
       <MobileMenu isOpen={isMobileMenuOpen}>
-        <MobileNavLink to="/about" onClick={toggleMobileMenu}>About TEACcH</MobileNavLink>
+        <MobileNavLink to="/about" onClick={toggleMobileMenu}>About</MobileNavLink>
         <MobileNavLink to="/programs" onClick={toggleMobileMenu}>Programs</MobileNavLink>
         <MobileNavLink to="/gallery" onClick={toggleMobileMenu}>Gallery</MobileNavLink>
         <MobileNavLink to="/blog" onClick={toggleMobileMenu}>Blog</MobileNavLink>

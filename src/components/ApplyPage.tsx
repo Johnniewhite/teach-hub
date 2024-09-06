@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const ApplyContainer = styled.div`
   padding: 2rem;
@@ -24,7 +24,7 @@ const FormContainer = styled.div`
 const ApplyPage: React.FC = () => {
   return (
     <ApplyContainer>
-      <Title>Apply for TED Circle Social Innovation Programme</Title>
+      <Title>Apply for TED Circle Social Innovators Programme</Title>
       <FormContainer>
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLScPylmlsYKwtsaJ8IYiZyj9X451kUdkaUVGz_shrDLSdMd1AQ/viewform?embedded=true"

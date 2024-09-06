@@ -82,10 +82,10 @@ const Footer: React.FC = () => {
         </FooterSection>
         <FooterSection>
           <FooterTitle>Contact Us</FooterTitle>
-          <p>123 Innovation Street</p>
+          <p>77 Ishaga Road, Surulere</p>
           <p>Lagos, Nigeria</p>
-          <p>Email: info@teacch.org</p>
-          <p>Phone: +234 123 456 7890</p>
+          <p>Email: tedcircle1@gmail.com</p>
+          <p>Phone: +2348104643834</p>
         </FooterSection>
         <FooterSection>
           <FooterTitle>Follow Us</FooterTitle>
@@ -96,10 +96,10 @@ const Footer: React.FC = () => {
             <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-twitter"></i>
             </SocialIcon>
-            <SocialIcon href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <SocialIcon href="https://www.instagram.com/ted_circle?igsh=MXFiZXhzaHZrbm1wYg==" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-instagram"></i>
             </SocialIcon>
-            <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <SocialIcon href="https://www.linkedin.com/company/the-education-development-ted-circle/" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
             </SocialIcon>
           </SocialIcons>
