@@ -155,7 +155,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         <NavLink to="/gallery">Gallery</NavLink>
         <NavLink to="/blog">Blog</NavLink>
         <NavLink to="/contact">Get in Touch</NavLink>
-        <NavLink to="/donate">Donate</NavLink>
+        {/* <NavLink to="/donate">Donate</NavLink> */}
+        <NavLink to="/apply">Apply</NavLink>
       </NavLinks>
     </Nav>
   );

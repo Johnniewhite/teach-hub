@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import ApplyPage from './components/ApplyPage';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -16,6 +18,7 @@ import 'swiper/css/pagination';
 const App: React.FC = () => {
   return (
     <Router>
+      <Navbar />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,7 +27,8 @@ const App: React.FC = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/apply" element={<ApplyPage />} />
+          {/* <Route path="/donate" element={<Donate />} /> */}
         </Routes>
       </Layout>
     </Router>
