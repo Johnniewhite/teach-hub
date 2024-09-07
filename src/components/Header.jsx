@@ -32,7 +32,7 @@ function Header() {
         </Link>
         <nav className={mobileMenuOpen ? 'mobile-menu-open' : ''}>
           <ul>
-            <li><Link to="/about">About TEACcH</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/programs">Programs</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/blog">Blog</Link></li>
