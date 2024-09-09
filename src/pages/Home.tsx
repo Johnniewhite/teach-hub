@@ -82,10 +82,10 @@ const HeroButton = styled.a`
 `;
 
 const sliderImages = [
-  'https://images.unsplash.com/photo-1693166757401-d9b192f3a0c6?q=80&w=1573&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1470&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1471&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1470&auto=format&fit=crop',
+  'https://www.shutterstock.com/image-photo/team-young-african-people-office-600nw-1922089445.jpg',
+  'https://img.freepik.com/free-photo/colleagues-team-working-company-paperwork-doig-teamwork-analyze-documents-online-research-information-planning-corporate-presentation-with-data-charts-job-collaboration_482257-49375.jpg',
+  'https://img.freepik.com/free-photo/people-office-during-work-day_23-2150690136.jpg',
+  'https://img.freepik.com/free-photo/people-office-during-work-day_23-2150690152.jpg',
 ];
 
 const Home: React.FC = () => {
