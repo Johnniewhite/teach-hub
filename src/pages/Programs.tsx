@@ -1,6 +1,6 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import styled from 'styled-components';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import styled from "styled-components";
 
 const ProgramsWrapper = styled.div`
   padding-top: 80px; // To account for the fixed navbar
@@ -69,7 +69,10 @@ const Programs: React.FC = () => {
     <ProgramsWrapper>
       <Helmet>
         <title>TEACcH Programs - Empowering Social Innovators</title>
-        <meta name="description" content="Explore TEACcH's innovative programs: The Education Development Circle (TED Circle) and the Festival of Change, designed to empower social innovators." />
+        <meta
+          name="description"
+          content="Explore TEACcH's innovative programs: The Education Development Circle (TED Circle) and the Festival of Change, designed to empower social innovators."
+        />
       </Helmet>
 
       <Hero>
@@ -84,18 +87,32 @@ const Programs: React.FC = () => {
           <SectionTitle>Transformative Learning Experiences</SectionTitle>
           <Content>
             <p>
-              At TEACcH, we offer cutting-edge programs designed to equip social innovators with the skills, knowledge, and resources they need to create lasting impact. Our programs focus on bridging gaps in the social innovation ecosystem and fostering collaboration among changemakers.
+              At TEACcH, we offer cutting-edge programs designed to equip social
+              innovators with the skills, knowledge, and resources they need to
+              create lasting impact. Our programs focus on bridging gaps in the
+              social innovation ecosystem and fostering collaboration among
+              changemakers.
             </p>
           </Content>
         </div>
       </Section>
 
-      <Section style={{ backgroundColor: 'var(--light-gray)' }}>
+      <Section style={{ backgroundColor: "var(--light-gray)" }}>
         <div className="container">
           <ProgramCard>
-            <ProgramTitle>The Education Development Circle (TED Circle)</ProgramTitle>
+            <ProgramTitle>
+              The Education Development Circle (TED Circle)
+            </ProgramTitle>
             <p>
-              TED Circle is a cohort-based mentorship program designed to equip social innovators with the essential knowledge and advanced skills needed to create sustainable solutions in the social innovation space.
+              TED Circle is a cohort-based mentorship program designed to equip
+              social innovators with the essential knowledge and advanced skills
+              needed to create sustainable solutions in the social innovation
+              space. The program's core modules focus on building solutions
+              driven by passion, converting purpose into sustainable outcomes,
+              developing scalable products or projects, and understanding the
+              policies that impact them. Participants are also trained to pitch
+              effectively, gaining access to the resources needed to accelerate
+              their products or projects.
             </p>
             <p>The program's core modules focus on:</p>
             <ul>
@@ -105,27 +122,40 @@ const Programs: React.FC = () => {
               <li>Understanding the policies that impact social innovation</li>
             </ul>
             <p>
-              Participants are also trained to pitch effectively, gaining access to the resources needed to accelerate their products or projects.
+              Participants are also trained to pitch effectively, gaining access
+              to the resources needed to accelerate their products or projects.
             </p>
-            <Button href="/ted-circle">Learn More About TED Circle</Button>
+            <Button href="/apply">Apply to TED Circle Today</Button>
           </ProgramCard>
+
+          <SectionTitle>Events</SectionTitle>
 
           <ProgramCard>
             <ProgramTitle>Festival of Change</ProgramTitle>
             <p>
-              The Festival of Change is an annual conference that responds to global challenges threatening the stability and future of our generations. This event is a platform where bold ideas are generated to tackle these problems.
+              The Festival of Change is an annual conference that responds to
+              global challenges threatening the stability and future of our
+              generations. This event is a platform where bold ideas are
+              generated to tackle these problems. Each Festival of Change is
+              designed to spearhead solutions through keynote addresses, panel
+              discussions, and innovative activities. The ultimate goals of the
+              conference are to inspire the creation of startups focused on
+              solutions, foster collaborations and partnerships centered on
+              these solutions, and provide mentorship and networking
+              opportunities that grant access to resources needed to accelerate
+              impactful initiatives.
             </p>
-            <p>Key features of the Festival of Change:</p>
-            <ul>
-              <li>Keynote addresses from industry leaders</li>
-              <li>Panel discussions on pressing global issues</li>
-              <li>Innovative activities to spark creativity and collaboration</li>
-              <li>Networking opportunities with like-minded innovators</li>
-            </ul>
             <p>
-              The ultimate goals of the conference are to inspire the creation of startups focused on solutions, foster collaborations and partnerships, and provide mentorship opportunities that grant access to resources needed to accelerate impactful initiatives.
+              At the pioneering Festival of Change, inspired by the African
+              Union’s declaration of a State of Emergency on Education, we are
+              driven by a passion to revitalize education in Nigeria. This
+              conference will explore the roles of the Business, Government, and
+              Development sectors in reviving and transforming the educational
+              landscape in Nigeria.
             </p>
-            <Button href="/festival-of-change">Discover the Festival of Change</Button>
+            <Button href="/festival-of-change">
+              Discover the Festival of Change
+            </Button>
           </ProgramCard>
         </div>
       </Section>
@@ -135,7 +165,11 @@ const Programs: React.FC = () => {
           <SectionTitle>Join Us in Creating Change</SectionTitle>
           <Content>
             <p>
-              Whether you're a budding social entrepreneur or an experienced innovator, our programs offer the perfect platform to enhance your skills, expand your network, and amplify your impact. Join us at TEACcH and be part of a community dedicated to creating positive change in the world.
+              Whether you're a budding social entrepreneur or an experienced
+              innovator, our programs offer the perfect platform to enhance your
+              skills, expand your network, and amplify your impact. Join us at
+              TEACcH and be part of a community dedicated to creating positive
+              change in the world.
             </p>
             <Button href="/apply">Apply to Our Programs</Button>
           </Content>
