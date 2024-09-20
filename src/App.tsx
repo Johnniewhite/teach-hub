@@ -6,6 +6,7 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import ApplyPage from './components/ApplyPage';
+import Programs from './pages/Programs'; // Ensure this import is present
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/apply" element={<ApplyPage />} />
+          <Route path="/programs" element={<Programs />} /> {/* Add this line */}
           {/* <Route path="/donate" element={<Donate />} /> */}
         </Routes>
       </Layout>

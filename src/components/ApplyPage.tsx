@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import PaymentModal from "./PaymentModal";
 
 const ApplyContainer = styled.div`
   padding: 2rem;
@@ -12,23 +11,6 @@ const Title = styled.h1`
   font-size: 2.5rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
-`;
-
-const PayButton = styled.button`
-  display: block;
-  margin-top: 2rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: var(--primary-color-dark);
-  }
 `;
 
 const BrochureButton = styled.a`
@@ -57,17 +39,17 @@ const FormContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
+const AccountInfo = styled.div`
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--primary-color);
+`;
+
 const ApplyPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleApply = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <ApplyContainer>
       <Title>Apply for TED Circle Social Innovators Programme</Title>
@@ -87,22 +69,24 @@ const ApplyPage: React.FC = () => {
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
+          title="ApplyForm"
         >
           Loading…
         </iframe>
       </FormContainer>
-
-      <PayButton onClick={handleApply}>
-        Pay for the Program
-      </PayButton>
-
-      <PaymentModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        amount={Number(process.env.REACT_APP_PROGRAM_PRICE) || 101624}
-        paystackPublicKey={process.env.REACT_APP_PAYSTACK_PUBLIC_KEY || 'pk_test_e77955b75f34bc8a2c8d61427b8a51b2c0fb7228'}
-        subaccountCode={process.env.REACT_APP_SUBACCOUNT_CODE || 'ACCT_tu2eakcs5h2k93t'}
-      />
+      <AccountInfo>
+        <span>
+          Kindly ensure to make your payments to this account and keep your receipts for confirmation.
+        </span>
+        <br />
+        <span>
+          <strong>Account Number:</strong> 8123030830
+          <br />
+          <strong>Name:</strong> Erioluwa Adeyinka
+          <br />
+          <strong>Bank:</strong> Moniepoint
+        </span>
+      </AccountInfo>
     </ApplyContainer>
   );
 };
