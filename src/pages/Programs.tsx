@@ -104,15 +104,15 @@ const Programs: React.FC = () => {
               The Education Development Circle (TED Circle)
             </ProgramTitle>
             <p>
-              TED Circle is a cohort-based mentorship program designed to equip
-              social innovators with the essential knowledge and advanced skills
-              needed to create sustainable solutions in the social innovation
-              space. The program's core modules focus on building solutions
-              driven by passion, converting purpose into sustainable outcomes,
-              developing scalable products or projects, and understanding the
-              policies that impact them. Participants are also trained to pitch
-              effectively, gaining access to the resources needed to accelerate
-              their products or projects.
+              TED Circle is a cohort-based social innovators program designed to
+              equip social innovators with the essential knowledge and advanced
+              skills needed to create sustainable solutions in the social
+              innovation space. The program's core modules focus on building
+              solutions driven by passion, converting purpose into sustainable
+              outcomes, developing scalable products or projects, and
+              understanding the policies that impact them. Participants are also
+              trained to pitch effectively, gaining access to the resources
+              needed to accelerate their products or projects.
             </p>
             <p>The program's core modules focus on:</p>
             <ul>
