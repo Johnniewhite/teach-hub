@@ -85,6 +85,26 @@ const GalleryCaption = styled.div`
   }
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const PaginationButton = styled.button`
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
 // Reusable components
 const Hero: React.FC<HeroProps> = ({ title, subtitle }) => (
   <HeroContainer>
@@ -134,14 +154,22 @@ const GalleryItemComponent: React.FC<{
     </GalleryItemWrapper>
   );
 };
-
 const Gallery: React.FC = () => {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20; // Adjust this number as needed
+
   const galleryItems = galleryData.items;
+  const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+
+  const paginatedItems = galleryItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const openLightbox = (index: number) => {
-    setCurrentImage(index);
+    setCurrentImage((currentPage - 1) * itemsPerPage + index);
     setLightboxIsOpen(true);
   };
 
@@ -161,7 +189,7 @@ const Gallery: React.FC = () => {
       />
 
       <Section title="TEACcH in Action">
-        <GalleryGrid items={galleryItems} onImageClick={openLightbox} />
+        <GalleryGrid items={paginatedItems} onImageClick={openLightbox} />
         <Lightbox
           open={lightboxIsOpen}
           close={() => setLightboxIsOpen(false)}
@@ -172,6 +200,21 @@ const Gallery: React.FC = () => {
             description: item.caption,
           }))}
         />
+        <PaginationContainer>
+          <PaginationButton 
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </PaginationButton>
+          <span>{currentPage} / {totalPages}</span>
+          <PaginationButton 
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </PaginationButton>
+        </PaginationContainer>
       </Section>
 
       <Section
@@ -187,5 +230,4 @@ const Gallery: React.FC = () => {
     </GalleryWrapper>
   );
 };
-
 export default Gallery;
