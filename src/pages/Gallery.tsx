@@ -149,7 +149,7 @@ const GalleryItemComponent: React.FC<{
 }> = ({ item, onClick }) => {
   return (
     <GalleryItemWrapper onClick={onClick}>
-      <img src={item.url} alt={item.alt} style={{ width: "100%", height: "auto" }} />
+      <img src={item.url} alt={item.alt} style={{ width: "100%", height: "auto" }} loading="lazy" />
       <GalleryCaption>{item.caption}</GalleryCaption>
     </GalleryItemWrapper>
   );
