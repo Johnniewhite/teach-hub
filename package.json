@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.21.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,22 +12,34 @@
     "@types/node": "^16.18.106",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "assert": "^2.1.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
+    "cloudinary": "^2.5.0",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
+    "dropbox": "^10.34.0",
+    "google-auth-library": "^9.14.1",
     "postcss": "^8.4.44",
     "postmark": "^4.0.5",
+    "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
+    "react-images": "^1.2.0-beta.7",
     "react-paystack": "^6.0.0",
+    "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.4",
+    "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.13",
     "swiper": "^11.1.12",
     "tailwindcss": "^3.4.10",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "util": "^0.12.5",
+    "web-vitals": "^2.1.4",
+    "yet-another-react-lightbox": "^3.21.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,6 +67,7 @@
   },
   "devDependencies": {
     "@types/react-helmet-async": "^1.0.3",
+    "@types/react-images": "^0.5.3",
     "@types/styled-components": "^5.1.34",
     "@types/swiper": "^6.0.0"
   }

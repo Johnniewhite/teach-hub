@@ -1,12 +1,34 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import styled from "styled-components";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import galleryData from "../data/galleryItems.json";
 
+// Type definitions
+interface GalleryItem {
+  url: string;
+  alt: string;
+  caption: string;
+}
+
+interface HeroProps {
+  title: string;
+  subtitle: string;
+}
+
+interface SectionProps {
+  title: string;
+  children: React.ReactNode;
+  backgroundColor?: string;
+}
+
+// Styled components
 const GalleryWrapper = styled.div`
-  padding-top: 80px; // To account for the fixed navbar
+  padding-top: 80px;
 `;
 
-const Hero = styled.div`
+const HeroContainer = styled.div`
   background-color: var(--primary-color);
   color: white;
   padding: 60px 0;
@@ -18,7 +40,7 @@ const HeroTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
-const Section = styled.section`
+const SectionContainer = styled.section`
   padding: 80px 0;
 `;
 
@@ -28,14 +50,14 @@ const SectionTitle = styled.h2`
   text-align: center;
 `;
 
-const GalleryGrid = styled.div`
+const GalleryGridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
 `;
 
-const GalleryItem = styled.div`
+const GalleryItemWrapper = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -45,12 +67,6 @@ const GalleryItem = styled.div`
   &:hover {
     transform: scale(1.05);
   }
-`;
-
-const GalleryImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const GalleryCaption = styled.div`
@@ -64,58 +80,109 @@ const GalleryCaption = styled.div`
   transform: translateY(100%);
   transition: transform 0.3s ease;
 
-  ${GalleryItem}:hover & {
+  ${GalleryItemWrapper}:hover & {
     transform: translateY(0);
   }
 `;
 
-// Sample gallery items (replace with your actual images and captions)
-const galleryItems = [
-  { src: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952', alt: 'Team Collaboration', caption: 'TEACcH team collaborating on a project' },
-  { src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f', alt: 'Workshop Session', caption: 'Participants engaged in a TED Circle workshop' },
-  { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2', alt: 'Conference Presentation', caption: 'Keynote speaker at the Festival of Change' },
-  { src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655', alt: 'Networking Event', caption: 'Networking session during a TEACcH event' },
-  { src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998', alt: 'Brainstorming Session', caption: 'Innovators brainstorming ideas at TEACcH' },
-  { src: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312', alt: 'Innovation Showcase', caption: 'Showcasing innovative projects at TEACcH' },
-  // Add more gallery items as needed
-];
+// Reusable components
+const Hero: React.FC<HeroProps> = ({ title, subtitle }) => (
+  <HeroContainer>
+    <div className="container">
+      <HeroTitle>{title}</HeroTitle>
+      <p>{subtitle}</p>
+    </div>
+  </HeroContainer>
+);
+
+const Section: React.FC<SectionProps> = ({
+  title,
+  children,
+  backgroundColor,
+}) => (
+  <SectionContainer style={{ backgroundColor: backgroundColor || "white" }}>
+    <div className="container">
+      <SectionTitle>{title}</SectionTitle>
+      {children}
+    </div>
+  </SectionContainer>
+);
+
+const GalleryGrid: React.FC<{
+  items: GalleryItem[];
+  onImageClick: (index: number) => void;
+}> = ({ items, onImageClick }) => (
+  <GalleryGridWrapper>
+    {items.map((item, index) => (
+      <GalleryItemComponent
+        key={index}
+        item={item}
+        onClick={() => onImageClick(index)}
+      />
+    ))}
+  </GalleryGridWrapper>
+);
+
+const GalleryItemComponent: React.FC<{
+  item: GalleryItem;
+  onClick: () => void;
+}> = ({ item, onClick }) => {
+  return (
+    <GalleryItemWrapper onClick={onClick}>
+      <img src={item.url} alt={item.alt} style={{ width: "100%", height: "auto" }} />
+      <GalleryCaption>{item.caption}</GalleryCaption>
+    </GalleryItemWrapper>
+  );
+};
 
 const Gallery: React.FC = () => {
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const galleryItems = galleryData.items;
+
+  const openLightbox = (index: number) => {
+    setCurrentImage(index);
+    setLightboxIsOpen(true);
+  };
+
   return (
     <GalleryWrapper>
       <Helmet>
         <title>TEACcH Gallery - Showcasing Our Impact</title>
-        <meta name="description" content="Explore TEACcH's gallery of events, workshops, and impactful moments in social innovation." />
+        <meta
+          name="description"
+          content="Explore TEACcH's gallery of events, workshops, and impactful moments in social innovation."
+        />
       </Helmet>
 
-      <Hero>
-        <div className="container">
-          <HeroTitle>Our Gallery</HeroTitle>
-          <p>Capturing Moments of Innovation and Impact</p>
-        </div>
-      </Hero>
+      <Hero
+        title="Our Gallery"
+        subtitle="Capturing Moments of Innovation and Impact"
+      />
 
-      <Section>
-        <div className="container">
-          <SectionTitle>TEACcH in Action</SectionTitle>
-          <GalleryGrid>
-            {galleryItems.map((item, index) => (
-              <GalleryItem key={index}>
-                <GalleryImage src={item.src} alt={item.alt} />
-                <GalleryCaption>{item.caption}</GalleryCaption>
-              </GalleryItem>
-            ))}
-          </GalleryGrid>
-        </div>
+      <Section title="TEACcH in Action">
+        <GalleryGrid items={galleryItems} onImageClick={openLightbox} />
+        <Lightbox
+          open={lightboxIsOpen}
+          close={() => setLightboxIsOpen(false)}
+          index={currentImage}
+          slides={galleryItems.map((item) => ({
+            src: item.url,
+            alt: item.alt,
+            description: item.caption,
+          }))}
+        />
       </Section>
 
-      <Section style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="container">
-          <SectionTitle>Share Your TEACcH Experience</SectionTitle>
-          <p style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-            Have you been part of a TEACcH event or program? We'd love to see your photos! Share your experiences with us on social media using #TEACcHImpact or email your photos to gallery@teacch.org.
-          </p>
-        </div>
+      <Section
+        title="Share Your TEACcH Experience"
+        backgroundColor="var(--light-gray)"
+      >
+        <p style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto" }}>
+          Have you been part of a TEACcH event or program? We'd love to see your
+          photos! Share your experiences with us on social media using
+          #TEACcHImpact or email your photos to gallery@teacch.org.
+        </p>
       </Section>
     </GalleryWrapper>
   );
