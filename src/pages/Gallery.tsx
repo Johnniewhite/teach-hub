@@ -1,26 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import galleryData from "../data/galleryItems.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 // Type definitions
 interface GalleryItem {
   url: string;
-  alt: string;
-  caption: string;
-}
-
-interface HeroProps {
-  title: string;
-  subtitle: string;
-}
-
-interface SectionProps {
-  title: string;
-  children: React.ReactNode;
-  backgroundColor?: string;
 }
 
 // Styled components
@@ -40,8 +28,9 @@ const HeroTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
-const SectionContainer = styled.section`
+const SectionContainer = styled.section<{ backgroundColor?: string }>`
   padding: 80px 0;
+  background-color: ${(props) => props.backgroundColor || "white"};
 `;
 
 const SectionTitle = styled.h2`
@@ -105,8 +94,12 @@ const PaginationButton = styled.button`
     cursor: not-allowed;
   }
 `;
+
 // Reusable components
-const Hero: React.FC<HeroProps> = ({ title, subtitle }) => (
+const Hero: React.FC<{ title: string; subtitle: string }> = ({
+  title,
+  subtitle,
+}) => (
   <HeroContainer>
     <div className="container">
       <HeroTitle>{title}</HeroTitle>
@@ -115,12 +108,12 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => (
   </HeroContainer>
 );
 
-const Section: React.FC<SectionProps> = ({
-  title,
-  children,
-  backgroundColor,
-}) => (
-  <SectionContainer style={{ backgroundColor: backgroundColor || "white" }}>
+const Section: React.FC<{
+  title: string;
+  children: React.ReactNode;
+  backgroundColor?: string;
+}> = ({ title, children, backgroundColor }) => (
+  <SectionContainer backgroundColor={backgroundColor}>
     <div className="container">
       <SectionTitle>{title}</SectionTitle>
       {children}
@@ -135,7 +128,7 @@ const GalleryGrid: React.FC<{
   <GalleryGridWrapper>
     {items.map((item, index) => (
       <GalleryItemComponent
-        key={index}
+        key={item.url}
         item={item}
         onClick={() => onImageClick(index)}
       />
@@ -146,30 +139,57 @@ const GalleryGrid: React.FC<{
 const GalleryItemComponent: React.FC<{
   item: GalleryItem;
   onClick: () => void;
-}> = ({ item, onClick }) => {
-  return (
-    <GalleryItemWrapper onClick={onClick}>
-      <img 
-        src={item.url} 
-        alt={item.alt} 
-        style={{ width: "100%", height: "auto" }} 
-        loading="lazy" 
-        onError={(e) => {
-          e.currentTarget.src = 'path/to/placeholder-image.jpg'; // Fallback image
-          e.currentTarget.alt = 'Image not available'; // Update alt text
-        }}
+}> = ({ item, onClick }) => (
+  <GalleryItemWrapper>
+    <a href={item.url} download={item.url.split("/").pop()} onClick={onClick}>
+      <img
+        src={item.url}
+        alt={item.url.split("/").pop()}
+        style={{ width: "100%", height: "auto", cursor: "pointer" }}
       />
-      <GalleryCaption>{item.caption}</GalleryCaption>
-    </GalleryItemWrapper>
-  );
-};
-const Gallery: React.FC = () => {
-  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; // Adjust this number as needed
+    </a>
+    <GalleryCaption>
+      <a href={item.url} download={item.url.split("/").pop()}>
+        <FontAwesomeIcon icon={faDownload} />
+      </a>
+    </GalleryCaption>
+  </GalleryItemWrapper>
+);
 
-  const galleryItems = galleryData.items;
+const Gallery: React.FC = () => {
+  const [lightboxIsOpen, setLightboxIsOpen] = useState<boolean>(false);
+  const [currentImage, setCurrentImage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const itemsPerPage = 20;
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("https://teacch-images.vercel.app/images");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch images");
+        }
+
+        const data = await response.json();
+        const processedItems: GalleryItem[] = data.images.map(
+          (url: string) => ({ url })
+        );
+
+        setGalleryItems(processedItems);
+        setIsLoading(false);
+      } catch (err) {
+        setError("Error fetching images. Please try again later.");
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
 
   const paginatedItems = galleryItems.slice(
@@ -181,6 +201,14 @@ const Gallery: React.FC = () => {
     setCurrentImage((currentPage - 1) * itemsPerPage + index);
     setLightboxIsOpen(true);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <GalleryWrapper>
@@ -205,38 +233,31 @@ const Gallery: React.FC = () => {
           index={currentImage}
           slides={galleryItems.map((item) => ({
             src: item.url,
-            alt: item.alt,
-            description: item.caption,
+            alt: item.url.split("/").pop(),
           }))}
         />
         <PaginationContainer>
-          <PaginationButton 
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          <PaginationButton
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
             Previous
           </PaginationButton>
-          <span>{currentPage} / {totalPages}</span>
-          <PaginationButton 
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          <span>
+            {currentPage} / {totalPages}
+          </span>
+          <PaginationButton
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
             disabled={currentPage === totalPages}
           >
             Next
           </PaginationButton>
         </PaginationContainer>
       </Section>
-
-      <Section
-        title="Share Your TEACcH Experience"
-        backgroundColor="var(--light-gray)"
-      >
-        <p style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto" }}>
-          Have you been part of a TEACcH event or program? We'd love to see your
-          photos! Share your experiences with us on social media using
-          #TEACcHImpact or email your photos to gallery@teacch.org.
-        </p>
-      </Section>
     </GalleryWrapper>
   );
 };
+
 export default Gallery;
