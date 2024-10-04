@@ -39,14 +39,23 @@ const FormContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-const AccountInfo = styled.div`
+const PaymentButton = styled.a`
+  display: inline-block;
   margin-top: 1rem;
-  padding: 1rem;
-  background-color: var(--light-gray);
-  border-radius: 8px;
-  text-align: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
   font-weight: bold;
-  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+
+  &:hover {
+    background-color: var(--primary-color-dark);
+  }
 `;
 
 const ApplyPage: React.FC = () => {
@@ -74,19 +83,9 @@ const ApplyPage: React.FC = () => {
           Loading…
         </iframe>
       </FormContainer>
-      <AccountInfo>
-        <span>
-          Kindly ensure to make your payments to this account and keep your receipts for confirmation.
-        </span>
-        <br />
-        <span>
-          <strong>Account Number:</strong> 8123030830
-          <br />
-          <strong>Name:</strong> Erioluwa Adeyinka
-          <br />
-          <strong>Bank:</strong> Moniepoint
-        </span>
-      </AccountInfo>
+      <PaymentButton href="https://selar.co/a7r1b0" target="_blank" rel="noopener noreferrer">
+        Make Payment
+      </PaymentButton>
     </ApplyContainer>
   );
 };
